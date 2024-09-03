@@ -5,12 +5,13 @@ import Button from "@/components/atoms/Button/Button";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import { TFunction } from "i18next";
-
+import { useRouter } from "next/router";
 interface Props {
   translate: TFunction<"home", undefined>;
 }
 
 function MapWorkSpace({ translate }: Props): JSX.Element {
+  const router = useRouter();
   return (
     <section className={`w-full ${styles.bg_gray} py-12 lg:py-28`}>
       <div className="w-full px-4 lg:px-0 lg:w-10/12 mx-auto flex flex-wrap flex-col lg:flex-row lg:justify-between items-center">
@@ -30,8 +31,9 @@ function MapWorkSpace({ translate }: Props): JSX.Element {
             <Button
               classes={`bg-dark_blue text-gray-200 py-4 px-10 rounded-lg`}
               text={translate("Lease a space")}
+              onClick={() => router.push("/coming-soon")}
             />
-            <Button classes={`flex space-x-1 items-center`}>
+            <Button classes={`flex space-x-1 items-center`} onClick={() => router.push("/coming-soon")}>
               <span>{translate("Find a space")}</span>{" "}
               <span>
                 <ArrowRightIcon className="w-5 h-4 " />

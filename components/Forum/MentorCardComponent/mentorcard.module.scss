@@ -1,0 +1,85 @@
+.bgCandidate1 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-1.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate2 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-2.jpeg");
+    background-position: center;
+  object-fit: contain;
+  transition: background 0.3s ease;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate3 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-3.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate4 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-4.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate5 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-5.jpeg");
+  background-position: center;
+  object-fit: contain;
+  transition: background 0.3s ease;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate6 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-6.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate7 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-7.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate8 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-8.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate9 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-9.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate10 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-10.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+.bgCandidate11 {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url("../../../assets/Candidate-11.jpeg");
+  transition: background 0.3s ease;
+    background-position: center;
+  object-fit: contain;
+  position: relative; /* Ensure position is set for absolute positioning inside */
+}
+
+.mentorCardBtn {
+  transition: transform 0.3s ease; /* Optional: smooth icon hover effect */
+}
+
+.mentorCardBtn:hover {
+  transform: scale(1.1); /* Optional: scale effect on hover */
+}

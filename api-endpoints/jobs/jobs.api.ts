@@ -93,10 +93,12 @@ export const getJobsCreated = async (): Promise<IRecruiterJobCreatedRes> => {
 	return data;
 };
 
-export const getXJobs = async (page = 1): Promise<IXJobResponse> => {
-	const { data } = await api.get(`/xjobs?page=${page}`)
-	return data
-}
+export const getXJobs = async (page = 1, searchTerm = ''): Promise<IXJobResponse> => {
+	const endpoint = searchTerm ? `/xjobs/search?q=${searchTerm}&page=${page}` : `/xjobs?page=${page}`;
+	const { data } = await api.get(endpoint);
+	return data;
+};
+
 export const getApplicants = async (jobId: string): Promise<JobApplicants> => {
 	const { data } = await api.get(`/jobs/v/${jobId}`);
 	return data;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllAppliedJobs, getAllSavedJobs } from "@/api-endpoints/jobs/jobs.api";
 import AdminLayout from "@/layouts/adminLayout";
@@ -11,6 +11,7 @@ const styles = {
 }
 export default function Applied(): JSX.Element {
     const [current, setCurrent] = useState<number>(0);
+    const [final, setFinal] = useState<any>([])
     const fetchData = async () => {
 
         switch (current) {
@@ -28,12 +29,23 @@ export default function Applied(): JSX.Element {
                 return await getAllAppliedJobs();
         }
     };
-    const { data, isLoading, isError } = useQuery(['jobs', current], fetchData);
-    const finalData = current === 0 ? data : data
+    const { data:allSaved, isLoading, isError } = useQuery(['jobs', current], getAllSavedJobs);
+    const { data:allApplied } = useQuery(['jobs', current], getAllAppliedJobs);
+    // const { data, isLoading, isError } = useQuery(['jobs', current], fetchData);
+    useEffect(() => {
+        if (current === 0) {
+            setFinal(allApplied);
+        }
+        else {
+            setFinal(allSaved)
+        }
+    }, [current])
+    
+    const finalData = current === 0 ? allApplied : allSaved
 
     const jobCount = finalData?.data?.length;
 
-    console.log({ jobCount, finalData });
+    console.log({ allApplied, allSaved });
 
 
     return (
@@ -97,9 +109,9 @@ export default function Applied(): JSX.Element {
                                     <p>Loading....</p>
                                 </div>
                             ) : (<>
-                                <div className="my-8 font-medium">Jobs Found (<span>{data?.total || 0}</span>)</div>
+                                <div className="my-8 font-medium">Jobs Found (<span>{finalData?.total || 0}</span>)</div>
                                 {/* @ts-ignore */}
-                                {finalData?.map((job): JSX.Element => {
+                                {allSaved?.map((job): JSX.Element => {
 
                                     return (
                                         <div key={job?._id}>

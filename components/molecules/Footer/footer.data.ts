@@ -52,7 +52,7 @@ export const footer: FooterItems[] = [
             {
                 external: false,
                 title: "afrisplash",
-                url: "/about-us",
+                url: "#",
             },
             { external: false, title: "careers", url: "#" },
             { external: false, title: "FAQs", url: "#" },
@@ -66,13 +66,13 @@ export const footer: FooterItems[] = [
             {
                 external: false,
                 title: "co-working space",
-                url: "/co-workingSpace",
+                url: "#",
             },
             { external: false, title: "forum", url: "#" },
             {
                 external: false,
                 title: "blogs & news",
-                url: "/blog",
+                url: "#",
             },
             { external: false, title: "events", url: "#" },
         ],
