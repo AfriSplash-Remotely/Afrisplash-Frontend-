@@ -45,7 +45,7 @@ export default function Applied(): JSX.Element {
 
     const jobCount = finalData?.data?.length;
 
-    console.log({ allApplied, allSaved });
+    // console.log({ allApplied, allSaved });
 
 
     return (
