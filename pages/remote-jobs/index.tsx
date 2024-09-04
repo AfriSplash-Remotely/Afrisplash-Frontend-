@@ -9,26 +9,38 @@ import GeneralLayout from "layouts/generalLayout";
 import XJobCard from "@/components/jobCard/xJobCard";
 
 const RemoteJobs: NextPage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
-  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [page, setPage] = useState<number>(1);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [triggerSearch, setTriggerSearch] = useState<boolean>(false);
 
+  // Fetch jobs using the useQuery hook
   const { data, isLoading, isPlaceholderData, isError } = useQuery({
-    queryKey: ["xJobs", page],
-    queryFn: () => getXJobs(page),
+    queryKey: ['xJobs', page,  triggerSearch],
+    queryFn: () => getXJobs(page, searchTerm),
     keepPreviousData: true,
-  })
+  });
 
-  const filterExternalJobData = (data: any[], searchTerm: string) => {
+  const handleSearch = () => {
+    setTriggerSearch(prev => !prev);  // Toggle the search trigger state
+  };
+  useEffect(() => {
     if (!searchTerm) {
-      return data
+      handleSearch();
     }
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    return data.filter((job: { title: string; companyName: string; }) => {
-      const lowerCaseTitle = job.title.toLowerCase();
-      const lowerCaseCompany = job.companyName.toLowerCase();
-      return lowerCaseTitle.includes(lowerCaseSearchTerm) || lowerCaseCompany.includes(lowerCaseSearchTerm);
-    })
-  }
+  }, [searchTerm])
+  
+console.log({data})
+  // const filterExternalJobData = (data: any[], searchTerm: string) => {
+  //   if (!searchTerm) {
+  //     return data
+  //   }
+  //   const lowerCaseSearchTerm = searchTerm.toLowerCase();
+  //   return data.filter((job: { title: string; companyName: string; }) => {
+  //     const lowerCaseTitle = job.title.toLowerCase();
+  //     const lowerCaseCompany = job.companyName.toLowerCase();
+  //     return lowerCaseTitle.includes(lowerCaseSearchTerm) || lowerCaseCompany.includes(lowerCaseSearchTerm);
+  //   })
+  // }
 
   const handleSearchChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setSearchTerm(event.target.value);
@@ -36,7 +48,7 @@ const RemoteJobs: NextPage = (): JSX.Element => {
   };
 
   const externalJobs = data ;
-  const filteredData = filterExternalJobData(externalJobs?.data || [], searchTerm);
+  // const filteredData = filterExternalJobData(externalJobs?.data || [], searchTerm);
 
 useEffect(() => {
   if(!isLoading){
@@ -63,18 +75,19 @@ useEffect(() => {
             </p>
           </div>
           <div className="relative flex justify-center w-full mt-12">
-            <div className="w-full lg:w-1/3">
+            <div className="w-full lg:w-1/3 flex items-center gap-6">
               <div className="w-full flex  justify-around item-center border bg-white h-12 px-2 rounded-lg">
                 <input
                   className="focus:outline-none w-full pr-2"
-                  type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Search Jobs by Title or Company" />
+                  type="text" value={searchTerm} onChange={(e:any) => setSearchTerm(e.target.value)} placeholder="Search Jobs by Title or Company" />
               </div>
+              <button className="h-12 px-4 rounded-md text-white flex items-center justify-center bg-primary_green" onClick={handleSearch}>Search</button>
             </div>
           </div>
           <div className="mt-12 flex items-center gap-8">
             {isLoading ? '' : (
               <>
-                <div className="my-8 font-medium text-lg text-gray-400">Found {filteredData?.length} Results of {externalJobs?.totalDocs}</div>
+                <div className="my-8 font-medium text-lg text-gray-400">Found {externalJobs?.data?.length} Results of {externalJobs?.totalDocs}</div>
               </>
             )}
           </div>
@@ -87,9 +100,9 @@ useEffect(() => {
               <h5 className="text-xl font-medium mt-8 text-gray-300">
                 Error Loading Remote Jobs
               </h5>
-              ) : filteredData.length  > 0 ? (
+              ) : data?.data.length  > 0 ? (
                   <>
-                    {filteredData?.flatMap((xjob): JSX.Element => {
+                    {data?.data?.flatMap((xjob): JSX.Element => {
                       return (
                         <div key={xjob?.id}>
                           <XJobCard

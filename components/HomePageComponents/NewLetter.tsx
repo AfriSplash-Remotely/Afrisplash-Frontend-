@@ -10,8 +10,8 @@ interface Props {
 
 function Newsletter({ translate }: Props): JSX.Element {
   return (
-    <section className={`w-full  bg-[#fce8b6] ${styles.bg}`}>
-      <div className={`${styles.Newsletter} py-20  afri-container`}>
+    <section className={`w-full flex justify-center items-center py-20  bg-[#fce8b6] ${styles.bg}`}>
+      {/* <div className={`${styles.Newsletter} py-20  afri-container`}>
         <div
           className={`relative overflow-visible flex w-full p-8 md:px-16 md:pt-12 md:pb-32 ${styles.Newsletterbx}`}
         >
@@ -62,7 +62,8 @@ function Newsletter({ translate }: Props): JSX.Element {
             <Image src={newsletter} alt="newsletter" />
           </div>
         </div>
-      </div>
+      </div> */}
+      <iframe src="https://afrisplash.substack.com/embed" className="h-[320px] w-10/12 mx-auto rounded-lg  " width="100%" height="320"   scrolling="no"></iframe>
     </section>
   );
 }

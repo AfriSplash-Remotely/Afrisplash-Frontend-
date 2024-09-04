@@ -64,7 +64,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <HomeJobs translate={translate} />
+      {/* <HomeJobs translate={translate} /> */}
       <Talents translate={translate} />
       <ExternalHomeJobs translate={translate}/>
       <MapWorkSpace translate={translate} />

@@ -4,6 +4,7 @@ import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import { faq, faqBodyI } from "@/utils";
 import { TFunction } from "i18next";
 import ContactModal from "@/components/molecules/ContactModal/contactModal";
+import Button from "../atoms/Button/Button";
 
 interface Props {
   translate: TFunction<"home", undefined>;
@@ -91,12 +92,19 @@ function Faq({ translate }: Props): JSX.Element {
               "If you still can’t find the answers you’re looking for"
             )}
           </p>
-          <button
-            onClick={handleClick}
-            className="mx-auto text-center text-green-800 text-lg font-semibold underline flex justify-center align-content-center"
-          >
-            {translate("Contact Us!")}
-          </button>
+         
+          <div className="w-fit mx-auto">
+
+          <Button
+           
+           // bgColor="dark_blue"
+           color="white"
+           text={translate("Contact Us")}
+           onClick={handleClick}
+           classes="w-max px-5 h-12  md:px-3 xl:px-5 rounded-md text-sm mx-auto  text-white bg-dark_blue hover:bg-primary_green"
+           // onClick={() => route.push("/auth/signup")}
+           />
+           </div>
         </div>
       </div>
     </section>

@@ -11,18 +11,77 @@ import Button from "@/components/atoms/Button/Button";
 import styles from "./styles.module.scss";
 import { getTotalCandidates } from "@/api-endpoints/get-candidates/get-candidates.api";
 import GhanaFlag from "assets/general/ghana-flag.svg";
+import candidatePic from "../../assets/candidate-pics.png"
 
 interface Props {
   translate: TFunction<"home", undefined>;
 }
 
+const datas = [
+  {
+    name: "Joel Adewole ",
+    position: "Software Engineer",
+    image: "",
+  },
+  {
+    name: "Olaniyi Elumalero",
+    position: "Graphic Designer ",
+    image: "",
+  },
+  {
+    name: "Opeyemi Oni",
+    position: "Product Manager ",
+    image: "",
+  },
+ 
+  {
+    name: "Beauty Ohia",
+    position: "UI Designer ",
+    image: "",
+  },
+  {
+    name: "Olawale Ibitoye",
+    position: "QA Engineer ",
+    image: "",
+  },
+  {
+    name: "Dorcas Obenewaa",
+    position: "Content Designer ",
+    image: "",
+  },
+  {
+    name: "Fenohery Fanomezanirina",
+    position: "UI Designer ",
+    image: "",
+  },
+  {
+    name: "Milcah Maina",
+    position: "Data Scientist ",
+    image: "",
+  },
+  {
+    name: "Shakirah Abdulkareem",
+    position: "UI/UX Designer ",
+    image: "",
+  },
+  {
+    name: "Atsu Adali-Mortty",
+    position: " Account Executive",
+    image: "",
+  },
+  {
+    name: "Anne Afolabi",
+    position: " Product Marketing Manager",
+    image: "",
+  },
+]
 function Talents({ translate }: Props): JSX.Element {
   const route = useRouter();
 
-  const { data } = useQuery(["candidatesList"], async () => {
-    const response = await getTotalCandidates();
-    return response.data;
-  });
+  // const { data } = useQuery(["candidatesList"], async () => {
+  //   const response = await getTotalCandidates();
+  //   return response.data;
+  // });
 
   return (
     <section className="w-full ">
@@ -40,18 +99,19 @@ function Talents({ translate }: Props): JSX.Element {
           </div>
           <div className=" my-10 space-y-6">
             <div className="grid gap-6  s:grid-cols-1 lg:grid-cols-4">
-              {data && data.length > 0 ? (
-                data &&
-                data.slice(0,11).map((candidate, index) => {
-                  const fullName = `${candidate.first_name} ${candidate.last_name}`;
+              {datas && datas.length > 0 ? (
+                datas &&
+                datas.slice(0,11).map((candidate, index:number) => {
+                  // const fullName = `${candidate.first_name} ${candidate.last_name}`;
                   return (
-                    <React.Fragment key={candidate._id}>
+                    <React.Fragment key={index}>
                       <MentorCard
-                        name={fullName}
-                        position="Senior Developer"
-                        role={candidate.role}
+                        name={candidate?.name}
+                        position={candidate?.position}
+                        index={index + 1}
+                        role={"Contract, Full-time, Remote only"}
                         flag={GhanaFlag}
-                        src={candidate.profile_image}
+                        src={"../../assets/candidate-pics.jpeg"}
                       />
                       {index == 2 && (
                         <div
@@ -77,7 +137,7 @@ function Talents({ translate }: Props): JSX.Element {
                           </div>
                           <div className="pt-6">
                             <Button
-                              onClick={() => route.push("/auth/signup")}
+                              onClick={() => route.push("/coming-soon")}
                               classes={`bg-primary_green text-white py-4 px-6 rounded-lg`}
                               text={translate("Create your profile")}
                             />

@@ -36,16 +36,16 @@ export function formatTimeAgo(dateString: string): string {
 
   switch (true) {
     case months >= 1:
-      formattedDate = `${months} ${months === 1 ? "month" : "MONTHS"} AGO`;
+      formattedDate = `${months} ${months === 1 ? "month" : "Months"} Ago`;
       break;
     case days >= 1:
-      formattedDate = `${days} ${days === 1 ? "day" : "DAYS"} AGO`;
+      formattedDate = `${days} ${days === 1 ? "day" : "Days"} Ago`;
       break;
     case hours >= 1:
-      formattedDate = `${hours} ${hours === 1 ? "hour" : "HOURS"} AGO`;
+      formattedDate = `${hours} ${hours === 1 ? "hour" : "Hours"} Ago`;
       break;
     case minutes >= 1:
-      formattedDate = `${minutes} ${minutes === 1 ? "minute" : "MINUTES"} AGO`;
+      formattedDate = `${minutes} ${minutes === 1 ? "minute" : "Minutes"} Ago`;
       break;
     default:
       formattedDate = "today";

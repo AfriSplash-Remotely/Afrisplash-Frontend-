@@ -71,7 +71,7 @@ const Navigation = (): JSX.Element => {
     {
       title: `${translate("Candidates")}`,
       icon: "",
-      link: "/candidates",
+      link: "/coming-soon",
       active: false,
       redirect: false
     },
@@ -163,7 +163,7 @@ const Navigation = (): JSX.Element => {
             </ul>
           </nav>
           <div className="flex space-x-8 items-center">
-            <div className="hidden md:flex space-x-4">
+            <div className="hidden md:hidden space-x-4 ">
               {isUserSignedIn ? (
                 <Button
                   type="filled"
