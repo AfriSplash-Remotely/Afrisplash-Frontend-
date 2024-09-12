@@ -11,6 +11,7 @@ import card_2 from "assets/home-page/anno.svg";
 import styles from "./Hero.module.scss";
 import { useState } from "react";
 import ContactModal from "../ContactModal/contactModal";
+import Link from "next/link";
 
 interface Props {
   translate: TFunction<"home", undefined>;
@@ -70,15 +71,15 @@ const Hero = ({ translate }: Props): JSX.Element => {
                   // onClick={() => route.push("/auth/signup")}
                 />
                 {isUserSignedIn ? null : (
-                  <button
-                  onClick={() => route.push("/coming-soon")}
+                  <Link href={"https://join.slack.com/t/afrisplash/shared_invite/zt-xifsxpw3-7f23alnl7mhtaw5vmjF6vw"} target="_blank"
+                 
                   className="flex space-x-2 items-center font-normal text-dark_blue hover:text-primary_green"
                   >
                     <span>{translate("Join the community")}</span>
                   <span>
                     <ArrowRightIcon className="w-5 h-4 " />
                   </span>
-                </button>
+                </Link>
                 )}
               </motion.div>
             </motion.div>
