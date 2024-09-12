@@ -34,6 +34,7 @@ const AddExperienceModal: React.FC<modalcompProps> = ({ open, setOpen, onClick, 
         { name: item.value, label: item.label }
     ))
 
+    
     useEffect(() => {
         const bodyData = [
             {
