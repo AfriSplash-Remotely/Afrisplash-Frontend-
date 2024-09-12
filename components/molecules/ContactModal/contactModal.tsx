@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, FC } from "react";
 import Button from "@/components/atoms/Button/Button";
@@ -12,6 +13,10 @@ import PropelLogo from "@/assets/icons/Propel.svg";
 import Rootlo from "@/assets/icons/rootlo.svg";
 import SafetyWingLogo from "@/assets/icons/safetyWing.svg";
 import Modal from "@/components/atoms/Modal/Modal";
+import { contactForm } from "@/api-endpoints/blog/blog.api";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import toast from "react-hot-toast";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -28,6 +33,44 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
     Rootlo,
     PropelLogo,
   ];
+
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [others, setOthers] = useState<string>("");
+  const { mutate: contactMutation, isLoading: contactLoading } = useMutation({
+    mutationFn: (body: any) => contactForm({ payload: body }),
+    onSuccess: () => {
+      toast.success("You have updated successfully ");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setOthers("");
+      setMessage("");
+      setIsOpen(false);
+    },
+    onError: (error: AxiosError<{ error: any }>) => {
+      toast.error(error?.response?.data?.error);
+    }
+  })
+
+  const handleContact = () => {
+    if (firstName && lastName && email && message) {
+
+      const body = {
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "message": message,
+        "additional_details": others?.length > 0 ? others : "Thank you"
+      };
+      contactMutation(body);
+    }
+    else {
+      toast.error("All fields are required ")
+    }
+  }
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div
@@ -50,6 +93,8 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
               <input
                 className="placeholder:text-sm text-sm border-grey border w-full h-14 rounded-lg px-4 pr-16 focus:outline-gray-600"
                 type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
 
@@ -60,6 +105,8 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
               <input
                 className="placeholder:text-sm text-sm border-grey border w-full h-14 rounded-lg px-4 pr-16 focus:outline-gray-600"
                 type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
           </div>
@@ -70,7 +117,9 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
             </label>
             <input
               className="placeholder:text-sm text-sm border-grey border w-full h-14 rounded-lg px-4 pr-16 focus:outline-gray-600"
-              type="text"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -81,6 +130,8 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
             <input
               className="placeholder:text-sm text-sm border-grey border w-full h-14 rounded-lg px-4 pr-16 focus:outline-gray-600"
               type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
           </div>
 
@@ -88,7 +139,8 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
             <label className="mb-3 uppercase text-dark_500 font-semibold text-xs md:text-sm lg:text-base">
               Additional Details *
             </label>
-            <textarea className="placeholder:text-sm text-sm border-grey border w-full h-[102px] rounded-lg px-4 pt-3 pr-16 focus:outline-gray-600" />
+            <textarea className="placeholder:text-sm text-sm border-grey border w-full h-[102px] rounded-lg px-4 pt-3 pr-16 focus:outline-gray-600" value={others}
+              onChange={(e) => setOthers(e.target.value)} />
           </div>
 
           <div className=" mt-9 pb-7 flex flex-col lg:flex-row gap-6 border-b border-grey">
@@ -96,14 +148,16 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, setIsOpen }) => {
               type="bordered"
               color="dark_blue"
               text={"Cancel"}
+              onClick={() => setIsOpen(false)}
               // borderColor="dark_blue"
               classes="w-full rounded-2xl capitalize h-14 text-sm text-dark_blue border border-grey"
             />
             <Button
               type="filled"
-              // bgColor="dark_blue"
+              onClick={handleContact}
+              
               color="white"
-              text={"Send Message"}
+              text={contactLoading ? "Loading..." : "Send Message"}
               classes="w-full h-14 rounded-2xl text-sm capitalize text-gray-400 bg-dark_blue"
             />
           </div>
