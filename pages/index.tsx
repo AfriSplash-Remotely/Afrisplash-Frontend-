@@ -6,11 +6,13 @@ import Head from "next/head";
 import Image from "next/image";
 import Hero from "@/components/molecules/Hero/Hero";
 import GeneralLayout from "layouts/generalLayout";
-import chipper from "assets/icons/chipper.svg";
+
 import propel from "assets/icons/Propel.svg";
 import nextford from "assets/icons/nextford.svg";
 import panther from "assets/icons/panther.svg";
 import rootlo from "assets/icons/rootlo.svg";
+import cleva from "assets/svg/cleva.svg";
+import chipper from "assets/svg/chipper.svg";
 import safetyWing from "assets/icons/safetyWing.svg";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
   const globalCompanies = [
     chipper,
     nextford,
-    panther,
+    cleva,
     rootlo,
     propel,
     safetyWing,
@@ -57,7 +59,7 @@ const Home: NextPage = () => {
           </h3>
           <div className="flex justify-around lg:justify-between flex-wrap gap-4">
             {globalCompanies.map((item: string) => (
-              <div key={generateUniqueId()} className="w-auto max-w-[120px]  md:w-auto">
+              <div key={generateUniqueId()} className="w-auto max-w-[120px] lg:max-w-fit  md:w-auto">
                 <Image src={item} alt="global companies" />
               </div>
             ))}

@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import styles from "./Navigation.module.scss";
 import Button from "../../atoms/Button/Button";
 import { generateUniqueId } from "@/utils/helper";
+import logo from "assets/svg/new-logo-beta.svg"; 
 
 export interface headerType {
   title: string;
@@ -138,9 +139,9 @@ const Navigation = (): JSX.Element => {
         <header className="w-11/12 relative z-50 md:w-11/12 xl:w-10/12 mx-auto h-full flex justify-between  items-center">
           <Link href="/" legacyBehavior>
             <div
-              className={`relative w-36 h-12 sm:w-28 md:w-32 md:h-14 flex items-center cursor-pointer ${styles.logo}`}
+              className={`relative w-auto h-auto sm:w-28 md:w-32 md:h-14 flex items-center cursor-pointer ${styles.logo}`}
             >
-              <Image src="/admin_logo.svg" alt="logo" fill />
+              <Image src={logo} alt="logo" fill />
             </div>
           </Link>
           <nav className="hidden lg:flex items-center h-full ">
