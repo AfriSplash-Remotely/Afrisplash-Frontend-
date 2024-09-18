@@ -11,7 +11,8 @@ import card_2 from "assets/home-page/anno.svg";
 import styles from "./Hero.module.scss";
 import { useState } from "react";
 import ContactModal from "../ContactModal/contactModal";
-import Link from "next/link";
+import Link from "next/link"; 
+import logo from "assets/svg/new-logo-beta.svg"; 
 
 interface Props {
   translate: TFunction<"home", undefined>;

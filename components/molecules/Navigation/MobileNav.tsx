@@ -8,10 +8,10 @@ import { Menu, Transition } from '@headlessui/react';
 import { useTranslation } from 'react-i18next';
 import { headerType } from './Navigation';
 import { Bars, Times } from '@/assets/svg';
-import logo from "@/assets/afrisplash-logo-main.png"
+// import logo from "@/assets/afrisplash-logo-main.png"
 import { generateUniqueId } from '@/utils/helper';
 
-
+import logo from "assets/svg/new-logo-beta.svg"; 
 
 const languages: { language: string; tag: string }[] = [
     { language: "English", tag: "en" },
