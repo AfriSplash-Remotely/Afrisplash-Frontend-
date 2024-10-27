@@ -28,6 +28,7 @@ const Onboarding = (): JSX.Element => {
     recruiter: <RecruiterOnboarding />
   }
 
+  
   return (
     <div>
       {isReady ? (
