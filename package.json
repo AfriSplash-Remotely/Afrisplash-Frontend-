@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 10000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 10000",
     "lint": "next lint",
     "docker:build": "sudo docker build . -t afri-frontend",
     "docker:publish": "sudo docker run --publish 3000:3000 afri-frontend"
